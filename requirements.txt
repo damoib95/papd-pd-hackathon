@@ -1,0 +1,6 @@
+numpy==1.26.4
+pandas==2.2.2
+psutil==5.9.0
+fastapi==0.95.2
+uvicorn[standard]==0.22.0
+python-multipart==0.0.17
