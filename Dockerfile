@@ -1,5 +1,5 @@
 # Imagen base de Python
-FROM python:3.12-slim
+FROM python:3.10-slim
 
 # Determinamos nuestro directorio de trabajo
 WORKDIR /app
@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y \
 COPY . /app
 
 # Instalar requirements
+RUN python -m pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Como se ejecuta
