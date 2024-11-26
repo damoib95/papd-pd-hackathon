@@ -6,6 +6,7 @@ WORKDIR /app
 
 # Dependencias y librerias
 RUN apt-get update && apt-get install -y \
+    ffmpeg \
     gcc \
     python3-dev \
     && apt-get clean
