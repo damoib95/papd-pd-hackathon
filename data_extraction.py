@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 
 def video_to_text():
     filename = os.getenv("FILENAME")
-    format = os.getenv("INPUT_TYPE")
+    format = os.getenv("FORMAT")
     video_path = os.path.join('data', 'input', f'{filename}.{format}')
     logging.info(f'Abriendo archivo {video_path}')
     video = AudioSegment.from_file(video_path, format=format)
