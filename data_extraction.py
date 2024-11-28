@@ -22,9 +22,9 @@ def video_to_text():
     audio.export(audio_path, format="mp3")
 
     language = os.getenv("LANGUAGE")
-    model = whisper.load_model("base")
+    model = whisper.load_model("tiny")
     logging.info('Generando transcripción de audio')
-    result = model.transcribe(audio_path, language=language, fp16=True)
+    result = model.transcribe(audio_path, language=language, fp16=False)
 
     output_dir = os.path.join('data', 'output')
     os.makedirs(tmp_dir, exist_ok=True)

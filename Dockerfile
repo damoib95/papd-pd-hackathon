@@ -12,6 +12,9 @@ RUN apt-get update && apt-get install -y \
     imagemagick \
     && apt-get clean
 
+# Copia el modelo predescargado al contenedor
+COPY models/tiny.pt /root/.cache/whisper/tiny.pt
+
 # Reemplazar el archivo policy.xml
 COPY policy.xml /etc/ImageMagick-6/policy.xml
 
