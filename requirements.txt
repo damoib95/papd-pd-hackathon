@@ -6,5 +6,5 @@ uvicorn[standard]==0.22.0
 python-multipart==0.0.17
 transformers==4.37.2
 pydub==0.25.1
-openai-whisper==20231117
+openai-whisper==2024093
 torch==2.5.1

@@ -15,9 +15,9 @@ def video_to_text():
     video = AudioSegment.from_file(video_path, format=format)
     audio = video.set_channels(1).set_frame_rate(16000).set_sample_width(2)
 
-    audio_path = os.path.join('data', 'output', f"{filename}_tmp.wav")
+    audio_path = os.path.join('data', 'output', f"{filename}_tmp.mp3")
     logging.info(f'Exportando audio {audio_path}')
-    audio.export(audio_path, format="wav")
+    audio.export(audio_path, format="mp3")
 
     language = os.getenv("LANGUAGE")
     model = whisper.load_model("base")
