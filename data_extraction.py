@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 logging.basicConfig(level=logging.INFO)
 
 def video_to_text():
+    logging.info(f'Iniciando conversión de vídeo a texto')
     filename = os.getenv("FILENAME")
     format = os.getenv("FORMAT")
     video_path = os.path.join('data', 'input', f'{filename}.{format}')
