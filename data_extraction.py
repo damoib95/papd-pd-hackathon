@@ -24,7 +24,7 @@ def video_to_text():
     logging.info('Generando transcripción de audio')
     result = model.transcribe(audio_path, language=language, fp16=False)
 
-    text_path = os.path.join('data', 'output', f"{filename}_tmp.txt")
+    text_path = os.path.join('data', 'output', f"{filename}.txt")
     with open(text_path, "w") as file:
         file.write(result["text"])
 
