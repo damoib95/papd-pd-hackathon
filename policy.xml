@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<policymap>
+  <policy domain="resource" name="temporary-path" value="/tmp"/>
+  <policy domain="path" rights="read|write" pattern="@*"/>
+  <policy domain="path" rights="read|write" pattern="*" />
+</policymap>

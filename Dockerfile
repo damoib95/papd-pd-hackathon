@@ -9,7 +9,11 @@ RUN apt-get update && apt-get install -y \
     ffmpeg \
     gcc \
     python3-dev \
+    imagemagick \
     && apt-get clean
+
+# Reemplazar el archivo policy.xml
+COPY policy.xml /etc/ImageMagick-6/policy.xml
 
 # Agregamos nuestros archivos
 COPY . /app
