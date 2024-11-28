@@ -30,7 +30,7 @@ def create_text_clip(text, duration, pos=("left", "top"), fontsize=40, color='wh
 def create_slide(slide, size):
     slide_text = slide.get("audio", "")
     tts = gTTS(text=slide_text, lang='en', tld='co.uk')
-    tmp_audio_path = os.path.join('tmp', 'temp_audio.mp3')
+    tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.mp3')
     tts.save(tmp_audio_path)
     
     audio_clip = AudioFileClip(tmp_audio_path)
@@ -73,11 +73,14 @@ def create_video(filename, size=(1280, 720)):
         clips.append(slide_clip)
 
     final_video = concatenate_videoclips(clips, method="compose")
-    output_path = os.path.join('output', f'{filename}.mp4')
-    tmp_audio_path = os.path.join('tmp', 'temp_audio.m4a')
+    output_path = os.path.join('data', 'output', f'{filename}.mp4')
+    tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.m4a')
     final_video.write_videofile(output_path, fps=12, audio_codec='aac', temp_audiofile=tmp_audio_path, remove_temp=True)
 
 def script_to_video():
     logging.info(f'Iniciando generación de vídeo')
     filename = os.getenv("FILENAME")
     create_video(filename, size=(1280, 720))
+    logging.info('Limpiando archivos temporales')
+    tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.mp3')
+    os.remove(tmp_audio_path)
