@@ -29,7 +29,7 @@ def create_text_clip(text, duration, pos=("left", "top"), fontsize=40, color='wh
 
 def create_slide(slide, size):
     slide_text = slide.get("audio", "")
-    tts = gTTS(text=slide_text, lang='en':, tld='co.uk')
+    tts = gTTS(text=slide_text, lang='en', tld='co.uk')
     tmp_audio_path = os.path.join('tmp', 'temp_audio.mp3')
     tts.save(tmp_audio_path)
     
@@ -69,7 +69,7 @@ def create_video(filename, size=(1280, 720)):
     clips = []
 
     for _, slide in enumerate(slides):
-        slide_clip = create_slide(filename, slide, size)
+        slide_clip = create_slide(slide, size)
         clips.append(slide_clip)
 
     final_video = concatenate_videoclips(clips, method="compose")
