@@ -78,11 +78,12 @@ def create_video(filename, size=(1280, 720)):
     output_path = os.path.join('data', 'output', f'{filename}.mp4')
     tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.m4a')
     final_video.write_videofile(output_path, fps=12, audio_codec='aac', temp_audiofile=tmp_audio_path, remove_temp=True)
+    
+    logging.info('Limpiando archivos temporales')
+    for path in tmp_audio_paths:
+        os.remove(path)
 
 def script_to_video():
     logging.info(f'Iniciando generación de vídeo')
     filename = os.getenv("FILENAME")
     create_video(filename, size=(1280, 720))
-    logging.info('Limpiando archivos temporales')
-    for path in tmp_audio_paths:
-        os.remove(path)
