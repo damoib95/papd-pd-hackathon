@@ -1,40 +1,35 @@
 {
-  "slides": [
-    {
-      "title": "1. Connecting the Dots",
-      "info": [
-        "Steve Jobs shares his story about dropping out of college.",
-        "He highlights the importance of following curiosity and intuition.",
-        "His calligraphy class at Reed College influenced typography in the Macintosh."
-      ],
-      "audio": "Steve Jobs reflects on how dropping out of college allowed him to explore his interests freely. One notable example is his calligraphy class, which later shaped the typography of the Macintosh. He emphasizes that it's impossible to connect the dots looking forward, but looking backward, everything makes sense."
-    },
-    {
-      "title": "2. Love and Loss",
-      "info": [
-        "Jobs recounts being fired from Apple, the company he founded.",
-        "He started NeXT and Pixar, marking a new creative phase.",
-        "His return to Apple brought innovation and personal fulfillment."
-      ],
-      "audio": "Steve Jobs shares how being fired from Apple was a transformative experience. It led to the creation of NeXT and Pixar, culminating in his eventual return to Apple. He stresses the importance of loving what you do, as it provides the resilience needed to overcome challenges."
-    },
-    {
-      "title": "3. Facing Death",
-      "info": [
-        "Jobs discusses his experience with a cancer diagnosis.",
-        "He reflects on the inevitability of death and its clarifying power.",
-        "He encourages living authentically and following one's heart."
-      ],
-      "audio": "Steve Jobs opens up about his battle with cancer and how it reinforced his perspective on life and death. He explains that accepting mortality helps strip away fears and external pressures, allowing for a life guided by intuition and passion."
-    },
-    {
-      "title": "4. Stay Hungry, Stay Foolish",
-      "info": [
-        "Jobs shares a farewell message inspired by the Whole Earth Catalog.",
-        "He urges graduates to remain curious and adventurous.",
-        "He concludes with a heartfelt wish for their futures."
-      ],
-      "audio": "Concluding his speech, Steve Jobs shares the phrase 'Stay Hungry, Stay Foolish' from the Whole Earth Catalog, inspiring graduates to pursue their passions with curiosity and courage. He wishes them success and fulfillment in their journeys."
-    }
-  ]
+    "slides": [
+        {
+            "title": "College Life Months",
+            "info": [
+                "Stanford commencement speaker says he dropped out of college after six months.",
+                "After dropping out, he took a calligraphy class and learned"
+            ],
+            "audio": "Stanford commencement speaker says he dropped out of college after six months. He says he had no idea what he wanted to do with his life and no idea how college was going to help him figure it out. After dropping out, he took a calligraphy class and learned about Sarah and Sans Sarah typefaces. The Mac would have never had multiple typefaces or proportionally spaced fonts if he hadn't dropped out, says Stanford's John MacIntosh. \"This is the closest I've ever gotten to a college graduation,\" he says."
+        },
+        {
+            "title": "Apple Life Company",
+            "info": [
+                "Walson started Apple in his parents garage when he was 20.",
+                "Apple grew from just the two of us in a garage into a"
+            ],
+            "audio": "Walson started Apple in his parents garage when he was 20. Apple grew from just the two of us in a garage into a two billion dollar company with over four thousand employees. Walson: Getting fired from Apple was the best thing that could have ever happened to me. He started a company named Next, another company named Pixar and fell in love with an amazing woman who would become his wife. Apple bought Next and he returned to Apple and the technology we developed at Next is at the heart of Apple's current Renaissance."
+        },
+        {
+            "title": "Death Life Heart",
+            "info": [
+                "Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life."
+            ],
+            "audio": "When I was 17 I read a quote that went something like if you live each day as if it was your last someday you'll most certainly be right. Remembering that I'll be dead soon is the most important tool I've ever encountered to help me make the big choices in life. Almost everything all external expectations all pride all fear of embarrassment or failure these things just fall away in the face of death. Death is very likely the single best invention of life it's life's change agent it clears out the old to make way for the new."
+        },
+        {
+            "title": "Google Issue Stanford",
+            "info": [
+                "Stanford's earth catalog was published in paperback form 35 years before Google.",
+                "Stewart and his team put out several issues of the whole earth"
+            ],
+            "audio": "Stanford's earth catalog was published in paperback form 35 years before Google. Stewart and his team put out several issues of the whole earth catalog and then when it had run its course they put out a final issue. On the back cover of their final issue was a photograph of an early morning country road the kind you might find yourself hitchhiking on. It was their farewell message as they signed off stay hungry stay foolish and I have always wished that for myself and now as you graduate to begin a new I wish that for you stay hungryStayFool."
+        }
+    ]
 }
