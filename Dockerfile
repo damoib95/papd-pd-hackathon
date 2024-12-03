@@ -1,18 +1,38 @@
 # Imagen base de Python
-FROM python:3.10-slim
+FROM python:3.11-slim
 
 # Determinamos nuestro directorio de trabajo
 WORKDIR /app
 
-# Dependencias y librerias
+# Dependencias y librerías del sistema
 RUN apt-get update && apt-get install -y \
     ffmpeg \
     gcc \
+    g++ \
     python3-dev \
     imagemagick \
+    build-essential \
     && apt-get clean
 
-# Copia el modelo predescargado al contenedor
+# Copia el archivo de requirements
+COPY requirements.txt /app/requirements.txt
+
+# Instalar las dependencias de Python
+RUN python -m pip install --upgrade pip
+
+# Instalar Torch primero
+#RUN pip install torch==2.5.1
+
+# Instalar las demás dependencias
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Instalar manualmente whisper
+#RUN pip install openai-whisper==20240930
+
+# Descargar modelo de SpaCy después de instalar las dependencias
+RUN python -m spacy download en_core_web_sm
+
+# Descargar y cachear el modelo de Whisper si es necesario
 COPY models/tiny.pt /root/.cache/whisper/tiny.pt
 
 # Reemplazar el archivo policy.xml
@@ -21,12 +41,8 @@ COPY policy.xml /etc/ImageMagick-6/policy.xml
 # Agregamos nuestros archivos
 COPY . /app
 
-# Instalar requirements
-RUN python -m pip install --upgrade pip
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Como se ejecuta
+# Exponer el puerto para la API
 EXPOSE 8000
 
+# Comando por defecto
 CMD ["python", "main.py"]
-
