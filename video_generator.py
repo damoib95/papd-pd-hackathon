@@ -27,10 +27,10 @@ def create_text_clip(text, duration, pos=("left", "top"), fontsize=40, color='wh
     clip = clip.set_duration(duration).set_position(pos).fadein(1).fadeout(1)
     return clip
 
-def create_slide(slide, size):
+def create_slide(slide, size, index):
     slide_text = slide.get("audio", "")
     tts = gTTS(text=slide_text, lang='en', tld='co.uk')
-    tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.mp3')
+    tmp_audio_path = os.path.join('data', 'tmp', f'temp_audio_{index}.mp3')
     tts.save(tmp_audio_path)
     
     audio_clip = AudioFileClip(tmp_audio_path)
@@ -62,15 +62,17 @@ def create_slide(slide, size):
     slide_clip = CompositeVideoClip(elements)
     slide_clip = slide_clip.set_audio(audio_clip)
 
-    return slide_clip
+    return slide_clip, tmp_audio_path
 
 def create_video(filename, size=(1280, 720)):
     slides = load_json(filename)
     clips = []
+    tmp_audio_paths = []
 
-    for _, slide in enumerate(slides):
-        slide_clip = create_slide(slide, size)
+    for index, slide in enumerate(slides):
+        slide_clip, tmp_audio_path = create_slide(slide, size, index)
         clips.append(slide_clip)
+        tmp_audio_paths.append(tmp_audio_path)
 
     final_video = concatenate_videoclips(clips, method="compose")
     output_path = os.path.join('data', 'output', f'{filename}.mp4')
@@ -82,5 +84,5 @@ def script_to_video():
     filename = os.getenv("FILENAME")
     create_video(filename, size=(1280, 720))
     logging.info('Limpiando archivos temporales')
-    tmp_audio_path = os.path.join('data', 'tmp', 'temp_audio.mp3')
-    os.remove(tmp_audio_path)
+    for path in tmp_audio_paths:
+        os.remove(path)
