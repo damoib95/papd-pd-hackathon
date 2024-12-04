@@ -1,5 +1,5 @@
 # Imagen base de Python
-FROM python:3.11-slim
+FROM python:3.11.5-slim
 
 # Determinamos nuestro directorio de trabajo
 WORKDIR /app
@@ -20,17 +20,12 @@ COPY requirements.txt /app/requirements.txt
 # Instalar las dependencias de Python
 RUN python -m pip install --upgrade pip
 
-# Instalar Torch primero
-#RUN pip install torch==2.5.1
-
 # Instalar las demás dependencias
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt 
 
-# Instalar manualmente whisper
-#RUN pip install openai-whisper==20240930
-
-# Descargar modelo de SpaCy después de instalar las dependencias
+# Descargar modelo de SpaCy
 RUN python -m spacy download en_core_web_sm
+RUN python -m spacy download es_core_news_sm
 
 # Descargar y cachear el modelo de Whisper si es necesario
 COPY models/tiny.pt /root/.cache/whisper/tiny.pt

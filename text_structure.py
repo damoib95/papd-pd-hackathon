@@ -6,7 +6,9 @@ import json
 from transformers import pipeline
 from collections import Counter
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %I:%M:%S %p')
 
 def split_text(text, max_words=700):
     words = text.split()
@@ -15,9 +17,19 @@ def split_text(text, max_words=700):
 def generate_summary(text, summarizer, max_length, min_length):
     return summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)[0]['summary_text']
 
-def extract_bullets(refined_audio_summary, nlp_model):
+def extract_bullets(refined_audio_summary, nlp_model, max_length=50):
     doc = nlp_model(refined_audio_summary)
+    
     sentences = [sent.text.strip() for sent in doc.sents]
+    
+    if len(sentences) == 1:
+        sentences = refined_audio_summary.split('"')
+        sentences = [s.strip() for s in sentences if s.strip()]
+
+    if len(sentences) == 1:
+        words = refined_audio_summary.split()
+        sentences = [' '.join(words[i:i + max_length]) for i in range(0, len(words), max_length)]
+    
     return sentences
 
 def extract_keywords(text, nlp_model, max_keywords=3):
@@ -32,8 +44,13 @@ def generate_title_with_keywords(text, nlp_model, max_keywords=3):
 
 def text_to_script():
     logging.info(f'Iniciando resumen y generación de guión')
+
+    language = os.getenv("LANGUAGE")
+    if language=='english':
+        nlp = spacy.load("en_core_web_sm")
+    elif language=='spanish':
+        nlp = spacy.load("es_core_news_sm")
     summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
-    nlp = spacy.load("en_core_web_sm")
 
     filename = os.getenv("FILENAME")
     text_path = os.path.join('data', 'output', f'{filename}.txt')
@@ -48,7 +65,12 @@ def text_to_script():
         return ""
 
     slides = []
-    chunks = split_text(text, max_words=700)
+    language = os.getenv("LANGUAGE")
+    if language=='spanish':
+        max_words = 400
+    elif language=='english':
+        max_words = 700
+    chunks = split_text(text, max_words)
 
     for i, chunk in enumerate(chunks, start=1):
         audio_summary = generate_summary(chunk, summarizer, max_length=150, min_length=100)

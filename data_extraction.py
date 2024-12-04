@@ -4,7 +4,9 @@ from pydub import AudioSegment
 import whisper
 from dotenv import load_dotenv
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s',
+                    datefmt='%Y-%m-%d %I:%M:%S %p')
 
 def video_to_text():
     logging.info(f'Iniciando conversión de vídeo a texto')
@@ -22,8 +24,10 @@ def video_to_text():
     audio.export(audio_path, format="mp3")
 
     language = os.getenv("LANGUAGE")
-    model = whisper.load_model("tiny")
+    model = whisper.load_model("base")
     logging.info('Generando transcripción de audio')
+    if language=='spanish':
+        language = 'es'
     result = model.transcribe(audio_path, language=language, fp16=False)
 
     output_dir = os.path.join('data', 'output')
